@@ -152,7 +152,7 @@ def build_list_of_folders(
         try_relative_folder = try_relative_folder.replace(home, '', 1)
 
     items = []
-    if (folder[-1] == os.sep):
+    if (arg[-1] == os.sep):
         items.append(
             ExtensionResultItem(
                 icon='images/open-folder.png',
