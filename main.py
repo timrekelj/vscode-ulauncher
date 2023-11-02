@@ -151,26 +151,17 @@ def build_list_of_folders(
     if try_relative_folder.startswith(home):
         try_relative_folder = try_relative_folder.replace(home, '', 1)
 
-    items = [
-        ExtensionResultItem(
-            icon='images/open-folder.png',
-            name='Open current folder',
-            description=f'Vs folder: {folder}',
-            on_enter=ExtensionCustomAction(
-                OpenFolder(folder), keep_app_open=False),
-        ),
-        ExtensionResultItem(
-            icon='images/inner-folder.png',
-            name='Go to parent',
-            description=f'Vs folder: {folder.parent}',
-            on_enter=ActionList([
-                SetUserQueryAction(
-                    f'{vs_keyword} {try_relative_folder}{os.sep}..{os.sep}'
-                ),
-                ExtensionCustomAction(folder, keep_app_open=True)
-            ]),
+    items = []
+    if (folder[-1] == os.sep):
+        items.append(
+            ExtensionResultItem(
+                icon='images/open-folder.png',
+                name='Open current folder',
+                description=f'Vs folder: {folder}',
+                on_enter=ExtensionCustomAction(
+                    OpenFolder(folder), keep_app_open=False),
+            )
         )
-    ]
 
     for folder in folders[:limit_folders_to_show]:
         try_relative_folder = str(folder)

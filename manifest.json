@@ -1,7 +1,7 @@
 {
   "required_api_version": "^2.0.0",
-  "name": "Visual Studio Code folder opener",
-  "description": "Open vscode folders",
+  "name": "Open Visual Studio Code projects",
+  "description": "Open prijects in Visual Studio Code",
   "developer_name": "Tim Rekelj (fork from Fernando Pérez)",
   "icon": "images/icon.png",
   "options": {
@@ -11,14 +11,14 @@
     {
       "id": "vs_kw",
       "type": "keyword",
-      "name": "Open with Vscode in folder",
-      "description": "Search folder to open vscode",
+      "name": "Keyword",
+      "description": "Keyword to open VSCode projects",
       "default_value": "vs"
     },
     {
       "id": "home_input",
       "type": "input",
-      "name": "Vscode folder home",
+      "name": "VSCode home directory",
       "description": "Where the navigation starts (empty is the user directory)",
       "default_value": ""
     },
