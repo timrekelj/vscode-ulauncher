@@ -151,9 +151,8 @@ def build_list_of_folders(
     if try_relative_folder.startswith(home):
         try_relative_folder = try_relative_folder.replace(home, '', 1)
 
-    items = []
     if (arg[-1] == os.sep):
-        items.append(
+        items = [(
             ExtensionResultItem(
                 icon='images/open-folder.png',
                 name='Open current folder',
@@ -161,7 +160,9 @@ def build_list_of_folders(
                 on_enter=ExtensionCustomAction(
                     OpenFolder(folder), keep_app_open=False),
             )
-        )
+        )]
+    else:
+        items = []
 
     for folder in folders[:limit_folders_to_show]:
         try_relative_folder = str(folder)
