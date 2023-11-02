@@ -153,35 +153,36 @@ def build_list_of_folders(
 
     items = []
 
+    items.append(
+        ExtensionResultItem(
+            icon='images/open-folder.png',
+            name='Open current folder',
+            description=f'VSCode folder: {folder}',
+            on_enter=ExtensionCustomAction(
+                OpenFolder(folder), keep_app_open=False
+            ),
+        )
+    )
+
     if (arg[-1] == os.sep or arg == '') and folder.exists():
-        items.append(
-            ExtensionResultItem(
-                icon='images/open-folder.png',
-                name='Open current folder',
-                description=f'VSCode folder: {folder}',
-                on_enter=ExtensionCustomAction(
-                    OpenFolder(folder), keep_app_open=False),
-            )
-        )
+        for folder in folders[:limit_folders_to_show]:
+            try_relative_folder = str(folder)
+            if try_relative_folder.startswith(home):
+                try_relative_folder = try_relative_folder.replace(home, '', 1)
 
-    for folder in folders[:limit_folders_to_show]:
-        try_relative_folder = str(folder)
-        if try_relative_folder.startswith(home):
-            try_relative_folder = try_relative_folder.replace(home, '', 1)
-
-        items.append(
-            ExtensionResultItem(
-                icon='images/inner-folder.png',
-                name=try_relative_folder,
-                description=f'VSCode folder: {folder}',
-                on_enter=ActionList([
-                    SetUserQueryAction(
-                        f'{vs_keyword} {try_relative_folder}{os.sep}'
-                    ),
-                    ExtensionCustomAction(folder, keep_app_open=True)
-                ]),
+            items.append(
+                ExtensionResultItem(
+                    icon='images/inner-folder.png',
+                    name=try_relative_folder,
+                    description=f'VSCode folder: {folder}',
+                    on_enter=ActionList([
+                        SetUserQueryAction(
+                            f'{vs_keyword} {try_relative_folder}{os.sep}'
+                        ),
+                        ExtensionCustomAction(folder, keep_app_open=True)
+                    ]),
+                )
             )
-        )
 
     return items
 
