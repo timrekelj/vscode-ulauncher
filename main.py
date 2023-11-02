@@ -183,8 +183,7 @@ def build_list_of_folders(
             )
         )
 
-    if (arg[-1] == os.sep or arg == '') and folder.exists():
-        items.pop(0)
+    items.pop(0)
 
     return items
 
