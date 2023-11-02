@@ -151,18 +151,18 @@ def build_list_of_folders(
     if try_relative_folder.startswith(home):
         try_relative_folder = try_relative_folder.replace(home, '', 1)
 
-    # if (arg[-1] == os.sep):
     items = []
 
-    # items.append(
-    #     ExtensionResultItem(
-    #         icon='images/open-folder.png',
-    #         name='Open current folder',
-    #         description=f'VSCode folder: {folder}',
-    #         on_enter=ExtensionCustomAction(
-    #             OpenFolder(folder), keep_app_open=False),
-    #     )
-    # )
+    if (arg[-1] == os.sep or arg == '') and folder.exists():
+        items.append(
+            ExtensionResultItem(
+                icon='images/open-folder.png',
+                name='Open current folder',
+                description=f'VSCode folder: {folder}',
+                on_enter=ExtensionCustomAction(
+                    OpenFolder(folder), keep_app_open=False),
+            )
+        )
 
     for folder in folders[:limit_folders_to_show]:
         try_relative_folder = str(folder)
