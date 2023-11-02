@@ -153,6 +153,25 @@ def build_list_of_folders(
 
     items = []
 
+    items.append([
+        ExtensionResultItem(
+            icon='images/open-folder.png',
+            name=arg,
+            description=f'VSCode folder: {folder}',
+            on_enter=ExtensionCustomAction(
+                OpenFolder(folder), keep_app_open=False
+            ),
+        ),
+        ExtensionResultItem(
+            icon='images/open-folder.png',
+            name=folder,
+            description=f'VSCode folder: {folder}',
+            on_enter=ExtensionCustomAction(
+                OpenFolder(folder), keep_app_open=False
+            ),
+        )
+    ])
+
     items.append(
         ExtensionResultItem(
             icon='images/open-folder.png',
@@ -182,9 +201,6 @@ def build_list_of_folders(
                 ]),
             )
         )
-
-    items.pop(0)
-
     return items
 
 
