@@ -1,8 +1,8 @@
 {
   "required_api_version": "^2.0.0",
-  "name": "Vs Folder",
-  "description": "Allow you to open vscode folders",
-  "developer_name": "Fernando Pérez",
+  "name": "Visual Studio Code folder opener",
+  "description": "Open vscode folders",
+  "developer_name": "Tim Rekelj (fork from Fernando Pérez)",
   "icon": "images/icon.png",
   "options": {
     "query_debounce": 0.05
